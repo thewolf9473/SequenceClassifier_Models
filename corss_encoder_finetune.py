@@ -10,9 +10,9 @@ Original file is located at
 import csv
 import pickle
 
-!pip install pip install sentencepiece
+# !pip install pip install sentencepiece
 
-!pip install transformers
+# !pip install transformers
 
 from transformers import pipeline
 
@@ -41,7 +41,7 @@ def main():
     # classifier = pipeline("zero-shot-classification", model="microsoft/deberta-large-mnli") #GPU
     # classifier.model.classifier=nn.Linear(in_features=1024, out_features=6, bias=True)
     # classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")  # GPU
-    print('classifier taken')
+#     print('classifier taken')
     test_file = "/content/Topic Annotation - ROXANNE V2.csv"
 
     # define the topics here
@@ -59,7 +59,7 @@ def main():
     filter_keys = ['labels']
     output = []
     # Iterate over the whole data and evaluate
-    print('before for loop')
+#     print('before for loop')
     rows_to_write=['Call_ID','Transcript','Labels','Predicted Labels']
     with open('predicted.csv','w') as csvfile:
       csvwriter = csv.writer(csvfile)
@@ -85,12 +85,12 @@ def main():
           d['topic'] = temp[0][0]
           #print(f'CALL_ID : {row["Call_ID"]} , PREDICTED_CLASS : {temp}')
           csvwriter.writerow([row["Call_ID"],row["Transcript"],row["Broad Topic[Drugs', 'Work Conversations', 'Other', 'Family-Friend Conversations', 'Money', 'Meeting']"],pred_class])
-          print(f'DONE {index}/{data.shape[0]}')
-      print("--- %s seconds ---" % (time.time() - start_time))
+#           print(f'DONE {index}/{data.shape[0]}')
+#       print("--- %s seconds ---" % (time.time() - start_time))
 
 
 process = psutil.Process(main())
-print(process.memory_info().rss)
+# print(process.memory_info().rss)
 
 import pandas as pd
 
